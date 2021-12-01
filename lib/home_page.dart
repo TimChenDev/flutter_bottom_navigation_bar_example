@@ -24,25 +24,34 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _pageIndex,
-        children: [
-          Navigator(
-            key: locator<TabService>().navigatorKeys[0],
-            initialRoute: ShopPage.route,
-            onGenerateRoute: router.generateRoute,
-          ),
-          Navigator(
-            key: locator<TabService>().navigatorKeys[1],
-            initialRoute: CartPage.route,
-            onGenerateRoute: router.generateRoute,
-          ),
-          Navigator(
-            key: locator<TabService>().navigatorKeys[2],
-            initialRoute: MemberPage.route,
-            onGenerateRoute: router.generateRoute,
-          ),
-        ],
+      body: WillPopScope(
+        onWillPop: () async {
+          // 如果沒有加這段的話, 不會去檢查 Tab 底下的 Navigator 是否有尚未關閉的 route
+          // Android 點擊返回鍵會直接把 HomePage 關掉
+          // 必須加上 maybePop 的判斷, 使用 TabService 的 navigatorKeys 去檢查是否還
+          // 有路徑可返回, 確定 Tab 裡面沒有路徑可返回才關閉 HomePage
+          return locator<TabService>().maybePop();
+        },
+        child: IndexedStack(
+          index: _pageIndex,
+          children: [
+            Navigator(
+              key: locator<TabService>().navigatorKeys[0],
+              initialRoute: ShopPage.route,
+              onGenerateRoute: router.generateRoute,
+            ),
+            Navigator(
+              key: locator<TabService>().navigatorKeys[1],
+              initialRoute: CartPage.route,
+              onGenerateRoute: router.generateRoute,
+            ),
+            Navigator(
+              key: locator<TabService>().navigatorKeys[2],
+              initialRoute: MemberPage.route,
+              onGenerateRoute: router.generateRoute,
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _pageIndex,

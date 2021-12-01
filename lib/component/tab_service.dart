@@ -25,6 +25,12 @@ class TabService {
     return await _getState().pushNamed(routeName, arguments: arguments);
   }
 
+  /// 檢查 navigator route 裡面是否能夠 pop 回去
+  /// 如果可以就 pop, 不行就返回 false
+  Future<bool> maybePop() async {
+    return !await Navigator.maybePop(_getState().context);
+  }
+
   void goBack() {
     return _getState().pop();
   }
