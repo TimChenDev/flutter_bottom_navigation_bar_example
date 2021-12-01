@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tab_example/component/locator.dart';
+import 'package:flutter_tab_example/component/navigation_service.dart';
+import 'package:flutter_tab_example/component/tab_service.dart';
 import 'package:flutter_tab_example/page/login_page.dart';
 import 'package:flutter_tab_example/page/member_page_2.dart';
 
 class MemberPage extends StatefulWidget {
+  static const String route = 'MemberPage';
+
   const MemberPage({Key? key}) : super(key: key);
 
   @override
@@ -21,25 +26,13 @@ class _MemberPageState extends State<MemberPage> {
             const Text('會員中心頁面'),
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) {
-                      return const LoginPage();
-                    },
-                  ),
-                );
+                locator<NavigationService>().push(LoginPage.route);
               },
               child: const Text('登入'),
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) {
-                      return const MemberPage2();
-                    },
-                  ),
-                );
+                locator<TabService>().push(MemberPage2.route);
               },
               child: const Text('to MemberPage2'),
             ),

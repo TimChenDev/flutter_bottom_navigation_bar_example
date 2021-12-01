@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tab_example/component/locator.dart';
+import 'package:flutter_tab_example/component/router.dart' as router;
+import 'package:flutter_tab_example/component/tab_service.dart';
 import 'package:flutter_tab_example/page/cart_page.dart';
 import 'package:flutter_tab_example/page/member_page.dart';
 import 'package:flutter_tab_example/page/shop_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+  static const String route = '/';
+
+  const HomePage({Key? key, this.title = 'Flutter Demo Home Page'})
+      : super(key: key);
 
   final String title;
 
@@ -22,40 +28,27 @@ class _HomePageState extends State<HomePage> {
         index: _pageIndex,
         children: [
           Navigator(
-            onGenerateRoute: (RouteSettings settings) {
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (_) {
-                  return const ShopPage();
-                },
-              );
-            },
+            key: locator<TabService>().navigatorKeys[0],
+            initialRoute: ShopPage.route,
+            onGenerateRoute: router.generateRoute,
           ),
           Navigator(
-            onGenerateRoute: (RouteSettings settings) {
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (_) {
-                  return const CartPage();
-                },
-              );
-            },
+            key: locator<TabService>().navigatorKeys[1],
+            initialRoute: CartPage.route,
+            onGenerateRoute: router.generateRoute,
           ),
           Navigator(
-            onGenerateRoute: (RouteSettings settings) {
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (_) {
-                  return const MemberPage();
-                },
-              );
-            },
+            key: locator<TabService>().navigatorKeys[2],
+            initialRoute: MemberPage.route,
+            onGenerateRoute: router.generateRoute,
           ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _pageIndex,
         onTap: (index) {
+          // 點擊 tab 切換時, 同時也要通知 TabService 更新他那邊的 index
+          locator<TabService>().index = index;
           setState(() {
             _pageIndex = index;
           });

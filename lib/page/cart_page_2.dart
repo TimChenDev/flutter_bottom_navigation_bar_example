@@ -3,6 +3,8 @@ import 'package:flutter_tab_example/page/cart_page_3.dart';
 import 'package:flutter_tab_example/util/ui_utils.dart';
 
 class CartPage2 extends StatelessWidget {
+  static const String route = 'CartPage2';
+
   const CartPage2({Key? key}) : super(key: key);
 
   @override

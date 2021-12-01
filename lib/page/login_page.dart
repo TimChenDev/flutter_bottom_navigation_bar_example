@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tab_example/util/ui_utils.dart';
 
 class LoginPage extends StatefulWidget {
+  static const String route = 'LoginPage';
+
   const LoginPage({Key? key}) : super(key: key);
 
   @override
