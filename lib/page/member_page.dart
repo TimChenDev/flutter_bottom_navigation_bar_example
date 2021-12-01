@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tab_example/page/login_page.dart';
+import 'package:flutter_tab_example/page/member_page_2.dart';
 
 class MemberPage extends StatefulWidget {
   const MemberPage({Key? key}) : super(key: key);
@@ -29,6 +30,18 @@ class _MemberPageState extends State<MemberPage> {
                 );
               },
               child: const Text('登入'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) {
+                      return const MemberPage2();
+                    },
+                  ),
+                );
+              },
+              child: const Text('to MemberPage2'),
             ),
           ],
         ),

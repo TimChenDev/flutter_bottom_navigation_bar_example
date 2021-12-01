@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tab_example/page/login_page.dart';
+import 'package:flutter_tab_example/page/shop_page_2.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({Key? key}) : super(key: key);
@@ -29,6 +30,18 @@ class _ShopPageState extends State<ShopPage> {
                 );
               },
               child: const Text('登入'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) {
+                      return const ShopPage2();
+                    },
+                  ),
+                );
+              },
+              child: const Text('to ShopPage2'),
             ),
           ],
         ),

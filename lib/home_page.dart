@@ -18,15 +18,39 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: IndexedStack(
         index: _pageIndex,
-        children: const [
-          ShopPage(),
-          CartPage(),
-          MemberPage(),
+        children: [
+          Navigator(
+            onGenerateRoute: (RouteSettings settings) {
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (_) {
+                  return const ShopPage();
+                },
+              );
+            },
+          ),
+          Navigator(
+            onGenerateRoute: (RouteSettings settings) {
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (_) {
+                  return const CartPage();
+                },
+              );
+            },
+          ),
+          Navigator(
+            onGenerateRoute: (RouteSettings settings) {
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (_) {
+                  return const MemberPage();
+                },
+              );
+            },
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

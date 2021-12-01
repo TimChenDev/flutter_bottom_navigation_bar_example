@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tab_example/page/cart_page_2.dart';
 import 'package:flutter_tab_example/page/login_page.dart';
 
 class CartPage extends StatefulWidget {
@@ -29,6 +30,18 @@ class _CartPageState extends State<CartPage> {
                 );
               },
               child: const Text('登入'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) {
+                      return const CartPage2();
+                    },
+                  ),
+                );
+              },
+              child: const Text('to CartPage2'),
             ),
           ],
         ),
