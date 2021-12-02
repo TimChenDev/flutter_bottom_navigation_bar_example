@@ -10,7 +10,9 @@ class ShopPage3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context: context, title: 'ShopPage3'),
-      body: const Text('This is ShopPage3'),
+      body: const Center(
+        child: Text('這裡是賣場第三頁'),
+      ),
     );
   }
 }

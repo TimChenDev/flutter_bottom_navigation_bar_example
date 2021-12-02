@@ -34,7 +34,7 @@ class _CartPageState extends State<CartPage> {
               onPressed: () {
                 locator<TabService>().push(CartPage2.route);
               },
-              child: const Text('to CartPage2'),
+              child: const Text('前往購物車第二頁'),
             ),
           ],
         ),

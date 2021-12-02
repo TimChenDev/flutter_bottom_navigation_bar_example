@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tab_example/component/locator.dart';
 import 'package:flutter_tab_example/component/router.dart' as router;
+import 'package:flutter_tab_example/component/tab_provider.dart';
 import 'package:flutter_tab_example/component/tab_service.dart';
 import 'package:flutter_tab_example/page/cart_page.dart';
 import 'package:flutter_tab_example/page/member_page.dart';
 import 'package:flutter_tab_example/page/shop_page.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   static const String route = '/';
@@ -19,8 +21,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _pageIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           return locator<TabService>().maybePop();
         },
         child: IndexedStack(
-          index: _pageIndex,
+          index: Provider.of<TabProvider>(context).getIndex(),
           children: [
             Navigator(
               key: locator<TabService>().navigatorKeys[0],
@@ -54,13 +54,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _pageIndex,
+        currentIndex: Provider.of<TabProvider>(context).getIndex(),
         onTap: (index) {
-          // 點擊 tab 切換時, 同時也要通知 TabService 更新他那邊的 index
-          locator<TabService>().index = index;
-          setState(() {
-            _pageIndex = index;
-          });
+          // 改成對 TabProvider 的 index 進行修改
+          // 所有取自 TabProvider index 的地方都會同步刷新畫面
+          Provider.of<TabProvider>(context, listen: false).setIndex(index);
         },
         items: const [
           BottomNavigationBarItem(

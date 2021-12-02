@@ -10,7 +10,9 @@ class MemberPage3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context: context, title: 'MemberPage3'),
-      body: const Text('This is MemberPage3'),
+      body: const Center(
+        child: Text('這裡是會員中心第三頁'),
+      ),
     );
   }
 }

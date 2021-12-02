@@ -13,11 +13,13 @@ class MemberPage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context: context, title: 'MemberPage2'),
-      body: TextButton(
-        onPressed: () {
-          locator<TabService>().push(MemberPage3.route);
-        },
-        child: const Text('to MemberPage3'),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            locator<TabService>().push(MemberPage3.route);
+          },
+          child: const Text('前往會員中心第三頁'),
+        ),
       ),
     );
   }

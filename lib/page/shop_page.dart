@@ -39,7 +39,7 @@ class _ShopPageState extends State<ShopPage> {
                   ),
                 );
               },
-              child: const Text('to ShopPage2'),
+              child: const Text('前往賣場第二頁'),
             ),
           ],
         ),

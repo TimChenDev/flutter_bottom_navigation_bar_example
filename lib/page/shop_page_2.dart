@@ -13,11 +13,13 @@ class ShopPage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context: context, title: 'ShopPage2'),
-      body: TextButton(
-        onPressed: () {
-          locator<TabService>().push(ShopPage3.route);
-        },
-        child: const Text('to ShopPage3'),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            locator<TabService>().push(ShopPage3.route);
+          },
+          child: const Text('前往賣場第三頁'),
+        ),
       ),
     );
   }

@@ -34,7 +34,7 @@ class _MemberPageState extends State<MemberPage> {
               onPressed: () {
                 locator<TabService>().push(MemberPage2.route);
               },
-              child: const Text('to MemberPage2'),
+              child: const Text('前往會員中心第二頁'),
             ),
           ],
         ),
